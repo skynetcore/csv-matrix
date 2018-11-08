@@ -25,16 +25,16 @@ Syntax for using the tool is as follows
 the following examples shows the simplicity of csv-matrix tool
 #### creating a csv file of 4 rows and 5 columns
 ```
-  ./csv-matrix   create   **--filename**=_filename.csv_   **--size**=4,5
+  ./csv-matrix   create   --filename=matrix.csv   --size=4,5
 ```
   
 #### updating an existing csv file that was created using csv-matrix tool
 ```
 direct cell updation at position i=1, j=4
  
-  ./csv-matrix   update   **--filename**=_filename.csv_   **--i**=1   **--j**=4 **value**=0.987
+  ./csv-matrix   update   --filename=matrix.csv   --i=1   --j=4 value=0.987
  
 entire row updation at position 5
  
-  ./csv-matrix   update   **--filename**=_filename.csv_   **--row**=5 **values**=92.1,34,4,57.4,27,4
+  ./csv-matrix   update   --filename=matrix.csv   --row=5 --values=92.1,34,4,57.4,27,4
 ```
