@@ -19,12 +19,18 @@
 #include "csv-matrix_common.h"
 
 
-char* csvmatrix_get_filename(char *filename) {
-    char *token;
+cvsmatrix* csvmatrix_get_size(char *sizestr) {
+    cvsmatrix matrix;
+    char *sizetoken = "--size=";
+
+    //take M
+    char *token = NULL;
     char delim = '=';
     int size_of_filename = strlen(filename);
     int itr = 0;
     int loc = 0;
+    int char_count = 0;
+    int char_size = 0;
 
     do {
         if(delim == filename[itr]) {
@@ -35,13 +41,54 @@ char* csvmatrix_get_filename(char *filename) {
         itr++;
     } while(filename[itr]!='\0');
 
-    //allocate memory
-    int char_count = size_of_filename-loc;
-    int char_size = sizeof(char)*char_count;
+    char_count = size_of_filename-loc;
+    char_size = sizeof(char)*char_count;
     token = (char*)malloc(char_size);
 
     itr=0;
-    //copy
+    do {
+        token[itr]=filename[loc];
+        itr++;
+        loc++;
+    } while(filename[loc]!= '\0');
+
+
+
+    return &matrix;
+}
+
+int csvmatrix_check_size(char *sizestr) {
+    int ret = 0;
+    char *sizetoken = "--size=";
+    if(!(strncmp(sizetoken, sizestr, strlen(sizetoken)))) {
+        ret = 1;
+    }
+    return ret;
+}
+
+char* csvmatrix_get_filename(char *filename) {
+    char *token = NULL;
+    char delim = '=';
+    int size_of_filename = strlen(filename);
+    int itr = 0;
+    int loc = 0;
+    int char_count = 0;
+    int char_size = 0;
+
+    do {
+        if(delim == filename[itr]) {
+            printf("found \n");
+            loc = itr + 1;
+            break;
+        }
+        itr++;
+    } while(filename[itr]!='\0');
+
+    char_count = size_of_filename-loc;
+    char_size = sizeof(char)*char_count;
+    token = (char*)malloc(char_size);
+
+    itr=0;
     do {
         token[itr]=filename[loc];
         itr++;
@@ -111,5 +158,9 @@ int ParseOptions(int argc, char** argv, csvmatrix* matrix) {
     if (!prima_check) {
         csvmatrix_error("filename not specified \n");
         exit(0);
+    } else {
+       if(matrix->op = FILE_CREATE) {
+           //check size
+       }
     }
 }
