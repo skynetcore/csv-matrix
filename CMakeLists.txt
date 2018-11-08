@@ -56,7 +56,7 @@ configure_file(
 )
 
 # set source files
-set(CSVMATRIX_SOURCE_FILES src/${PROJECT_NAME}.c)
+set(CSVMATRIX_SOURCE_FILES src/${PROJECT_NAME}.c src/${PROJECT_NAME}_options.c src/${PROJECT_NAME}_logger.c)
 add_executable(${PROJECT_NAME} ${CSVMATRIX_SOURCE_FILES})
 
 

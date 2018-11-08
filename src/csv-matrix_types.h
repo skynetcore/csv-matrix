@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef _CSVMATRIX_TYPES_H_
+#define _CSVMATRIX_TYPES_H_
 
-#include "csv-matrix_common.h"
-#include "csv-matrix_version.h"
-#include "csv-matrix_options.h"
-#include "csv-matrix_types.h"
-#include "csv-matrix_logger.h"
+typedef enum FILEOP {
+    FILE_CREATE = 0,
+    FILE_UPDATE = 1,
+    FILE_DELETE = 3,
+} FILEOP;
 
 
-csvmatrix matrix;
+typedef struct CSVMATRIX {
+    char *filename;
+    int row;
+    int col;
+    FILEOP op;
+} csvmatrix;
 
-int main(int argc, char* argv[]) {
-    csvmatrix_debug("csv-matrix tool version %d.%d\n", major_version, minor_version );
 
-    // debug
-    ParseOptions(argc, argv, &matrix);
+#endif
 
-    return 0;
-}
